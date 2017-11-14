@@ -1,7 +1,16 @@
 class Character{
   constructor(x,y){
-    this.coordinates = [x,y]
-    this.placeCharacter(x,y)
+    this.x = x
+    this.y = y
+    this.coordinates = [this.x, this.y]
+    this.createCharacter()
+    this.placeCharacter(this.coordinates)
+
+    this.moveCharacter()
+  }
+
+  formatCoordinates(coordinatesArray){
+    return `${coordinatesArray[0]}-${coordinatesArray[1]}`
   }
 
   createCharacter(){
@@ -11,17 +20,64 @@ class Character{
     character.style.marginRight = "30%"
     character.style.backgroundColor = "red"
     character.innerText = 'es'
+    character.id = "hero"
     return character
   }
 
-  placeCharacter(x,y){
+  removeCharacter(){
+    let character = document.getElementById('hero')
+    if (character){
+      character.remove()
+    }
+  }
+
+  placeCharacter(coordinatesArray){
+    this.removeCharacter()
     let character = this.createCharacter()
-    let tile = document.getElementById(`${x}-${y}`)
+    let position = this.formatCoordinates(coordinatesArray)
+    let tile = document.getElementById(position)
     tile.appendChild(character)
   }
 
   moveCharacter(){
+    this.moveDown()
+    this.moveUp()
+    this.moveRight()
+    this.moveLeft()
+  }
 
+  moveDown(){
+    document.addEventListener('keydown', (ev) => {
+      if (ev.which === 40){
+        this.x += 1
+        this.placeCharacter([this.x, this.y])
+      }
+    })
+  }
+
+  moveUp(){
+    document.addEventListener('keydown', (ev) => {
+      if (ev.which === 38){
+        this.x -= 1
+        this.placeCharacter([this.x, this.y])
+      }
+    })
+  }
+  moveRight(){
+    document.addEventListener('keydown', (ev) => {
+      if (ev.which === 39){
+        this.y += 1
+        this.placeCharacter([this.x, this.y])
+      }
+    })
+  }
+  moveLeft(){
+    document.addEventListener('keydown', (ev) => {
+      if (ev.which === 37){
+        this.y -= 1
+        this.placeCharacter([this.x, this.y])
+      }
+    })
   }
 
 }
