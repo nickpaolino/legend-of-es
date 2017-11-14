@@ -29,6 +29,7 @@ class Board {
 
   createCanvas(width, height){
     var canvas = document.createElement('table')
+    canvas.style.backgroundImage = `url("img/elements/grass.png")`
     canvas.className = "canvas"
     document.body.appendChild(canvas)
 
@@ -53,6 +54,7 @@ class Board {
           cell.appendChild(img)
         }
         else {
+          cell.style.backgroundImage = `url("img/elements/grass.png")`
           cell.dataset.item = "open"
         }
 

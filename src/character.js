@@ -47,11 +47,7 @@ class Character{
     this.moveLeft()
   }
 
-  // checkBarriers(barrierList){
-  //   for(let barrier of barrierList){
-  //     if(barrier[0] === this.x )
-  //   }
-  // }
+
 
   moveDown(){
     document.addEventListener('keydown', (ev) => {
