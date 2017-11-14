@@ -34,6 +34,7 @@ class Character{
     this.removeCharacter()
     let character = this.createCharacter()
     let position = this.formatCoordinates(coordinatesArray)
+    console.log(position);
     let tile = document.getElementById(position)
     tile.appendChild(character)
   }
@@ -55,8 +56,14 @@ class Character{
   moveDown(){
     document.addEventListener('keydown', (ev) => {
       if (ev.which === 40){
-        this.x += 1
-        this.placeCharacter([this.x, this.y])
+        console.log(this.x)
+        console.log(`projected - ${this.x+1}`)
+        let coord = this.formatCoordinates([this.x + 1, this.y])
+        let tile = document.getElementById(coord)
+        if (tile.dataset.item === "open"){
+          this.x += 1
+          this.placeCharacter([this.x, this.y])
+        }
       }
     })
   }
@@ -64,24 +71,36 @@ class Character{
   moveUp(){
     document.addEventListener('keydown', (ev) => {
       if (ev.which === 38){
-        this.x -= 1
-        this.placeCharacter([this.x, this.y])
+        let coord = this.formatCoordinates([this.x - 1, this.y])
+        let tile = document.getElementById(coord)
+        if (tile.dataset.item === "open"){
+          this.x -= 1
+          this.placeCharacter([this.x, this.y])
+        }
       }
     })
   }
   moveRight(){
     document.addEventListener('keydown', (ev) => {
       if (ev.which === 39){
-        this.y += 1
-        this.placeCharacter([this.x, this.y])
+        let coord = this.formatCoordinates([this.x, this.y + 1])
+        let tile = document.getElementById(coord)
+        if (tile.dataset.item === "open"){
+          this.y += 1
+          this.placeCharacter([this.x, this.y])
+        }
       }
     })
   }
   moveLeft(){
     document.addEventListener('keydown', (ev) => {
       if (ev.which === 37){
-        this.y -= 1
-        this.placeCharacter([this.x, this.y])
+        let coord = this.formatCoordinates([this.x, this.y - 1])
+        let tile = document.getElementById(coord)
+        if (tile.dataset.item === "open"){
+          this.y -= 1
+          this.placeCharacter([this.x, this.y])
+        }
       }
     })
   }
