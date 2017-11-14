@@ -34,7 +34,6 @@ class Character{
     this.removeCharacter()
     let character = this.createCharacter()
     let position = this.formatCoordinates(coordinatesArray)
-    console.log(position);
     let tile = document.getElementById(position)
     tile.appendChild(character)
   }
@@ -52,8 +51,6 @@ class Character{
   moveDown(){
     document.addEventListener('keydown', (ev) => {
       if (ev.which === 40){
-        console.log(this.x)
-        console.log(`projected - ${this.x+1}`)
         let coord = this.formatCoordinates([this.x + 1, this.y])
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){

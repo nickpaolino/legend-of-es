@@ -5,7 +5,13 @@ class Board {
     this.createCanvas(15, 15)
     this.character = this.createCharacter(1,1)
     this.monster = this.createMonster(4,8)
-    // this.createBarriers()
+    this.checkGameEnd()
+  }
+
+  checkGameEnd(){
+    if(this.monster.coordinates[0] === this.character.coordinates[0] && this.monster.coordinates[1] === this.character.coordinates[1]){
+      debugger
+    }
   }
 
   generateBoard(){

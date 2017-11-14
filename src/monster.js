@@ -41,20 +41,19 @@ class Monster{
 
 
   moveMonster(){
-    
-    // setInterval(() => {
-    //   let randomNumber = Math.floor(Math.random() * 4)
-    //   if (randomNumber === 0) this.moveDown();
-    //   else if (randomNumber === 1) this.moveUp();
-    //   else if (randomNumber === 2) this.moveLeft();
-    //   else  this.moveRight();
-    // }, 500)
+
+    setInterval(() => {
+      let randomNumber = Math.floor(Math.random() * 4)
+      if (randomNumber === 0) this.moveDown();
+      else if (randomNumber === 1) this.moveUp();
+      else if (randomNumber === 2) this.moveLeft();
+      else  this.moveRight();
+    }, 500)
   }
 
 
 
   moveDown(){
-    console.log(this);
     let coord = this.formatCoordinates([this.x + 1, this.y])
     let tile = document.getElementById(coord)
     if (tile.dataset.item === "open"){
