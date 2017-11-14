@@ -4,6 +4,7 @@ class Character{
     this.x = x
     this.y = y
     this.coordinates = [this.x, this.y]
+    this.img = 'img/characters/ES/down/Es_01.png'
     this.createCharacter()
     this.placeCharacter(this.coordinates)
     this.moveCharacter()
@@ -14,12 +15,14 @@ class Character{
   }
 
   createCharacter(){
-    let character = document.createElement('div')
-    character.style.borderRadius = "50%"
-    character.style.marginLeft = "30%"
-    character.style.marginRight = "30%"
-    character.style.backgroundColor = "red"
-    character.innerText = 'es'
+    // let character = document.createElement('div')
+    // character.style.borderRadius = "50%"
+    let character = document.createElement('img')
+    // if(this.direction === "up"){
+    //
+    // }
+    character.src = this.img
+    character.style.width = '100%'
     character.id = "hero"
     return character
   }
@@ -54,6 +57,7 @@ class Character{
         let coord = this.formatCoordinates([this.x + 1, this.y])
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
+          this.img = `img/characters/ES/down/Es_01.png`
           this.x += 1
           this.coordinates = [this.x, this.y]
           this.placeCharacter([this.x, this.y])
@@ -65,10 +69,13 @@ class Character{
   moveUp(){
     document.addEventListener('keydown', (ev) => {
       if (ev.which === 38){
+        let hero = document.getElementById('hero')
         let coord = this.formatCoordinates([this.x - 1, this.y])
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
+          this.img = `img/characters/ES/up/Es_01.png`
           this.x -= 1
+          // this.direction = "up"
           this.coordinates = [this.x, this.y]
           this.placeCharacter([this.x, this.y])
         }
@@ -82,6 +89,8 @@ class Character{
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
           this.y += 1
+          this.img = `img/characters/ES/right/Es_01.png`
+          // this.direction = "right"
           this.coordinates = [this.x, this.y]
           this.placeCharacter([this.x, this.y])
         }
@@ -95,6 +104,8 @@ class Character{
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
           this.y -= 1
+          // this.direction = "left"
+          this.img = `img/characters/ES/left/Es_01.png`
           this.coordinates = [this.x, this.y]
           this.placeCharacter([this.x, this.y])
         }

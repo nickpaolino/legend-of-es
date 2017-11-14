@@ -14,7 +14,6 @@ class Board {
         console.log("Game Over");
       }
     }
-    // console.log("Game Over Method");
   }
 
   generateBoard(){
