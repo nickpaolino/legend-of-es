@@ -11,6 +11,7 @@ class Character{
     character.style.marginRight = "30%"
     character.style.backgroundColor = "red"
     character.innerText = 'es'
+    character.id = 'hero'
     return character
   }
 
