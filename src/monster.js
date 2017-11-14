@@ -1,5 +1,6 @@
 class Monster{
-  constructor(x,y){
+  constructor(x,y, board){
+    this.board = board
     this.x = x
     this.y = y
     this.coordinates = [this.x,this.y]
@@ -11,7 +12,6 @@ class Monster{
   formatCoordinates(coordinatesArray){
     return `${coordinatesArray[0]}-${coordinatesArray[1]}`
   }
-
 
   createMonster(){
     let monster = document.createElement('div')
@@ -32,6 +32,7 @@ class Monster{
   }
 
   placeMonster(coordinatesArray){
+    this.board.gameOver()
     this.removeMonster()
     let monster = this.createMonster()
     let position = this.formatCoordinates(coordinatesArray)
@@ -41,14 +42,13 @@ class Monster{
 
 
   moveMonster(){
-
     setInterval(() => {
       let randomNumber = Math.floor(Math.random() * 4)
       if (randomNumber === 0) this.moveDown();
       else if (randomNumber === 1) this.moveUp();
       else if (randomNumber === 2) this.moveLeft();
-      else  this.moveRight();
-    }, 500)
+      else this.moveRight();
+    }, 1000)
   }
 
 
@@ -58,6 +58,7 @@ class Monster{
     let tile = document.getElementById(coord)
     if (tile.dataset.item === "open"){
       this.x += 1
+      this.coordinates = [this.x, this.y]
       this.placeMonster([this.x, this.y])
     }
   }
@@ -66,6 +67,7 @@ class Monster{
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
           this.x -= 1
+          this.coordinates = [this.x, this.y]
           this.placeMonster([this.x, this.y])
         }
   }
@@ -74,6 +76,7 @@ class Monster{
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
           this.y += 1
+          this.coordinates = [this.x, this.y]
           this.placeMonster([this.x, this.y])
         }
   }
@@ -82,6 +85,7 @@ class Monster{
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
           this.y -= 1
+          this.coordinates = [this.x, this.y]
           this.placeMonster([this.x, this.y])
         }
   }

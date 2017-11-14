@@ -1,5 +1,6 @@
 class Character{
-  constructor(x,y){
+  constructor(x,y, board){
+    this.board = board
     this.x = x
     this.y = y
     this.coordinates = [this.x, this.y]
@@ -31,6 +32,7 @@ class Character{
   }
 
   placeCharacter(coordinatesArray){
+    this.board.gameOver()
     this.removeCharacter()
     let character = this.createCharacter()
     let position = this.formatCoordinates(coordinatesArray)
@@ -46,8 +48,6 @@ class Character{
     this.moveLeft()
   }
 
-
-
   moveDown(){
     document.addEventListener('keydown', (ev) => {
       if (ev.which === 40){
@@ -55,6 +55,7 @@ class Character{
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
           this.x += 1
+          this.coordinates = [this.x, this.y]
           this.placeCharacter([this.x, this.y])
         }
       }
@@ -68,6 +69,7 @@ class Character{
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
           this.x -= 1
+          this.coordinates = [this.x, this.y]
           this.placeCharacter([this.x, this.y])
         }
       }
@@ -80,6 +82,7 @@ class Character{
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
           this.y += 1
+          this.coordinates = [this.x, this.y]
           this.placeCharacter([this.x, this.y])
         }
       }
@@ -92,6 +95,7 @@ class Character{
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
           this.y -= 1
+          this.coordinates = [this.x, this.y]
           this.placeCharacter([this.x, this.y])
         }
       }

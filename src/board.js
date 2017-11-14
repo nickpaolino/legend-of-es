@@ -3,15 +3,18 @@ class Board {
     this.boardArray = []
     this.generateBoard()
     this.createCanvas(15, 15)
-    this.character = this.createCharacter(1,1)
-    this.monster = this.createMonster(4,8)
-    this.checkGameEnd()
+    this.createCharacter(1,1)
+    this.createMonster(4,8)
+    this.gameOver()
   }
 
-  checkGameEnd(){
-    if(this.monster.coordinates[0] === this.character.coordinates[0] && this.monster.coordinates[1] === this.character.coordinates[1]){
-      debugger
+  gameOver(){
+    if (this.monster && this.character){
+      if (this.monster.coordinates[0] === this.character.coordinates[0] && this.monster.coordinates[1] === this.character.coordinates[1]){
+        console.log("Game Over");
+      }
     }
+    // console.log("Game Over Method");
   }
 
   generateBoard(){
@@ -70,11 +73,13 @@ class Board {
     }
   }
   createCharacter(x,y){
-    return new Character(x,y)
+    let character = new Character(x,y, this)
+    this.character = character
   }
 
   createMonster(x,y){
-    return new Monster(x,y)
+    let monster = new Monster(x,y, this)
+    this.monster = monster
   }
 
 }
