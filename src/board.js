@@ -1,7 +1,7 @@
 class Board {
   constructor(){
     this.createCanvas(15, 15)
-    this.placeCharacter()
+    this.character = this.createCharacter(1,1)
   }
 
   createCanvas(width, height){
@@ -22,20 +22,8 @@ class Board {
       }
     }
   }
-
-  createCharacter(){
-    let character = document.createElement('div')
-    character.style.borderRadius = "50%"
-    character.style.marginLeft = "30%"
-    character.style.marginRight = "30%"
-    character.style.backgroundColor = "red"
-    character.innerText = 'es'
-    return character
+  createCharacter(x,y){
+    return new Character(x,y)
   }
 
-  placeCharacter(){
-    let character = this.createCharacter()
-    let tile = document.getElementById('1-1')
-    tile.appendChild(character)
-  }
 }
