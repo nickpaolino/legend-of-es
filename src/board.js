@@ -4,6 +4,7 @@ class Board {
     this.generateBoard()
     this.createCanvas(15, 15)
     this.character = this.createCharacter(1,1)
+    this.monster = this.createMonster(4,8)
     // this.createBarriers()
   }
 
@@ -65,12 +66,9 @@ class Board {
   createCharacter(x,y){
     return new Character(x,y)
   }
-  //
-  // createBarriers(){
-  //   let tile = document.getElementById(`3-3`)
-  //   let img = document.createElement('img')
-  //   img.src = `img/elements/bush.png`
-  //   img.style.width = '100%'
-  //   tile.appendChild(img)
-  // }
+
+  createMonster(x,y){
+    return new Monster(x,y)
+  }
+
 }
