@@ -1,12 +1,10 @@
 class Board {
   constructor(){
     this.mapNumber = 0
-    // this.boardArray = []
+    this.itemCount = 0
     this.generateMap()
-
     this.createCanvas(15, 15)
     this.createPointsDiv()
-
     // These will be created by the map class
     this.createCharacter(1,1)
     this.createMonster(4,8)
@@ -24,7 +22,8 @@ class Board {
 
   createPointsDiv(){
     let h3 = document.createElement('h3')
-    h3.innerText = "Points: "
+    h3.id = 'score'
+    h3.innerText = `Coffees Left: ${this.itemCount}`
     h3.align = "center"
     document.body.appendChild(h3)
   }

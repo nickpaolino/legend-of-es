@@ -22,11 +22,18 @@ class Character{
     let position = this.formatCoordinates(coordinatesArray)
     let tile = document.getElementById(position)
     tile.appendChild(character)
+    return character
+  }
+
+  displayScore(){
+    let score = document.getElementById("score")
+    score.innerHTML = `Coffees Left: ${this.board.itemCount-this.itemCount}`
   }
 
 
   placeCharacter(coordinatesArray){
     this.board.gameOver()
+    this.displayScore()
     let character = document.getElementById('hero')
     character.src = this.img
     let position = this.formatCoordinates(coordinatesArray)
