@@ -24,12 +24,12 @@ class Character{
     tile.appendChild(character)
   }
 
-  removeCharacter(){
-    let character = document.getElementById('hero')
-    if (character){
-      character.remove()
-    }
-  }
+  // removeCharacter(){
+  //   let character = document.getElementById('hero')
+  //   if (character){
+  //     character.remove()
+  //   }
+  // }
 
 
 
@@ -54,7 +54,7 @@ class Character{
   moveDown(){
     document.addEventListener('keydown', (ev) => {
       if (this.board.pauseSwitch === true){
-        console.log('paused')
+        console.log('down is paused')
       }
       else if (ev.which === 40){
         let coord = this.formatCoordinates([this.x + 1, this.y])
