@@ -8,7 +8,7 @@ class Map {
     this.board = board
     this.number = this.board.mapNumber
 
-    this.barrierCount = 200
+    this.barrierCount = 20
     this.itemCount = 4
 
     // 4 is the limit for the monsters right now
