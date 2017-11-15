@@ -6,7 +6,7 @@ class Character{
     this.coordinates = [this.x, this.y]
     this.img = 'img/characters/ES/down/Es_01.png'
     this.createCharacter(this.coordinates)
-    this.moveCharacter()
+    this.moveCharacter() //why does the listener work but not the gameOver?
   }
 
   formatCoordinates(coordinatesArray){
