@@ -42,11 +42,16 @@ class Monster{
 
   moveMonster(){
     setInterval(() => {
-      let randomNumber = Math.floor(Math.random() * 4)
-      if (randomNumber === 0) this.moveDown();
-      else if (randomNumber === 1) this.moveUp();
-      else if (randomNumber === 2) this.moveLeft();
-      else this.moveRight();
+      if(this.board.pauseSwitch){
+        clearInterval(id)
+      }
+      else{
+        let randomNumber = Math.floor(Math.random() * 4)
+        if (randomNumber === 0) this.moveDown();
+        else if (randomNumber === 1) this.moveUp();
+        else if (randomNumber === 2) this.moveLeft();
+        else this.moveRight();
+      }
     }, 1000)
   }
 
