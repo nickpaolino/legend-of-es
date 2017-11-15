@@ -9,6 +9,7 @@ class Board {
     this.createCharacter(1,1)
     this.createMonster(4,8)
     this.pauseSwitch = false
+    this.gameOverSwitch = false
     this.pause()
   }
 
