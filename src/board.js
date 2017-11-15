@@ -12,6 +12,7 @@ class Board {
     this.createMonster()
     this.pauseSwitch = false
     this.gameOverSwitch = false
+    this.flagSwitch === false
     this.pause()
   }
 
