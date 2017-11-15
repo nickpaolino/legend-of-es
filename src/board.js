@@ -18,7 +18,7 @@ class Board {
 
   generateBoard(){
     this.board = [
-      [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0],
+      [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 2],
       [0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
@@ -30,9 +30,9 @@ class Board {
       [0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0],
       [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0],
       [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0],
+      [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 2, 0, 0, 1, 0],
       [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0],
-      [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0],
-      [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0],
+      [0, 1, 0, 2, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0],
     ]
   }
 
@@ -57,6 +57,14 @@ class Board {
         if (tileItem === 1){
           let img = document.createElement('img')
           img.src = `img/elements/bush.png`
+          img.style.width = '100%'
+          cell.id = `${i}-${j}`
+          cell.dataset.item = "barrier"
+          cell.appendChild(img)
+        }
+        else if (tileItem === 2){
+          let img = document.createElement('img')
+          img.src = `img/elements/coffee.png`
           img.style.width = '100%'
           cell.id = `${i}-${j}`
           cell.dataset.item = "barrier"
