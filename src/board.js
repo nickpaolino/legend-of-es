@@ -5,7 +5,7 @@ class Board {
     this.createCanvas(15, 15)
     this.createCharacter(1,1)
     this.createMonster(4,8)
-    this.gameOver()
+    // this.gameOver()
   }
 
   gameOver(){
