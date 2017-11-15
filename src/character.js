@@ -94,14 +94,12 @@ class Character{
         img.src = `img/elements/flag.png`
         img.style.width = "100%"
         this.board.flagSwitch = true
-        debugger
         flagTile.appendChild(img)
       }
 
       this.placeCharacter([this.x, this.y])
     }
     else if (tile.dataset.item === "flag"){
-      debugger
       console.log('flag')
     }
   }
