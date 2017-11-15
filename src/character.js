@@ -4,7 +4,7 @@ class Character{
     this.x = x
     this.y = y
     this.coordinates = [this.x, this.y]
-    this.img = 'img/characters/ES/down/Es_01.png'
+    this.img = 'img/characters/ES/right/Es_01.png'
     this.createCharacter(this.coordinates)
     this.itemCount = 0
     this.moveCharacter() //why does the listener work but not the gameOver?

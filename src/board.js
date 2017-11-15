@@ -1,13 +1,15 @@
 class Board {
   constructor(){
     this.mapNumber = 0
+    this.monsters = []
     this.itemCount = 0
     this.generateMap()
     this.createCanvas(15, 15)
     this.createPointsDiv()
     // These will be created by the map class
-    this.createCharacter(1,1)
-    this.createMonster(4,8)
+    this.createCharacter(7,0)
+    // this.createMonster(4,8)
+    this.createMonster()
     this.pauseSwitch = false
     this.gameOverSwitch = false
     this.pause()
@@ -95,9 +97,13 @@ class Board {
     this.character = character
   }
 
-  createMonster(x, y){
-    let monster = new Monster(x, y, this)
-    this.monster = monster
+  createMonster(){
+    let monsterCoordinates = this.map.createMonsters()
+    for (var position of monsterCoordinates){
+      let monster = new Monster(position[0], position[1], this)
+      console.log(monster);
+      this.monsters.push(monster);
+    }
   }
 
 }

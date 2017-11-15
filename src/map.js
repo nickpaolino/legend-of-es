@@ -6,43 +6,52 @@ class Map {
     this.board = board
     this.number = this.board.mapNumber
 
-    this.barrierCount = 100
-    this.itemCount = 3
-    this.monsterCount = 2
+    this.barrierCount = 50
+    this.itemCount = 4
+    this.monsterCount = 1
 
     this.map = []
 
-    this.createTiles()
     this.createMonsters()
+    this.createTiles()
   }
 
   createMonsters(){
-    let monsterCoordinates = []
+    this.monsterCoordinates = []
     let count = this.monsterCount
-    let coordinates = this.generateCoordinatesList()
-    let quarter = (this.height * this.width) / 4
+    // let coordinates = this.generateCoordinatesList()
+    // let quarter = (this.height * this.width) / 4
+    //
+    // let randomOne = Math.floor(Math.random() * quarter)
+    // let randomTwo = Math.floor((Math.random() * quarter) + quarter)
+    // let randomThree = Math.floor((Math.random() * quarter) + (quarter * 2))
+    // let randomFour = Math.floor((Math.random() * quarter) + (quarter * 3))
 
-    let randomOne = Math.floor(Math.random() * quarter)
-    let randomTwo = Math.floor((Math.random() * quarter) + quarter)
-    let randomThree = Math.floor((Math.random() * quarter) + (quarter * 2))
-    let randomFour = Math.floor((Math.random() * quarter) + (quarter * 3))
+    // let randomArray = [
+    //   randomOne,
+    //   randomTwo,
+    //   randomThree,
+    //   randomFour
+    // ]
 
-    let randomArray = [
-      randomOne,
-      randomTwo,
-      randomThree,
-      randomFour
+    let positionArray = [
+      [4, 3],
+      [9, 7],
+      [3, 8],
+      [1, 9]
     ]
 
     while (count > 0){
-      let randomPick = Math.floor(Math.random() * 4)
-      let randomIndex = randomArray[randomPick]
-      let point = coordinates[randomIndex]
-      monsterCoordinates.push(point)
+      // let randomPick = Math.floor(Math.random() * 4)
+      // let randomIndex = randomArray[randomPick]
+      // let point = coordinates[randomIndex]
+      let point = positionArray.pop()
+      console.log(point);
+      this.monsterCoordinates.push(point)
       count -= 1
     }
 
-    return monsterCoordinates
+    return this.monsterCoordinates
   }
 
   createTiles(){
@@ -80,6 +89,30 @@ class Map {
     this.generateSpecialTiles(2, this.itemCount)
   }
 
+  coordinatesTaken(coordinate){
+    // // Starting Position for Character
+    // this.monsterCoordinates.push([7, 0])
+    // // Ending Position for Character
+    // this.monsterCoordinates.push([7, 14])
+
+    let takenCoordinates = [
+      [4, 3],
+      [9, 7],
+      [3, 8],
+      [1, 9],
+      [7, 0],
+      [7, 14]
+    ]
+
+    for (var item of takenCoordinates){
+      if (item[0] === coordinate[0] && item[1] === coordinate[1]){
+        return true
+      }
+    }
+
+    return false
+  }
+
   generateSpecialTiles(item, count){
     let tileNumber = this.height * this.width
     let coordinates = this.generateCoordinatesList()
@@ -87,8 +120,10 @@ class Map {
     while (count > 0){
       let randomCoordinate = Math.floor(Math.random() * tileNumber)
       let randomPoint = coordinates[randomCoordinate]
-      this.dropTile(randomPoint, item)
-      count -= 1
+      if (!this.coordinatesTaken(randomPoint)){
+        this.dropTile(randomPoint, item)
+        count -= 1
+      }
     }
   }
 
