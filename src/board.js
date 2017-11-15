@@ -3,12 +3,12 @@ class Board {
     this.mapNumber = 0
     this.monsters = []
     this.itemCount = 0
+    this.exitCoordinates = '7-14'
     this.generateMap()
     this.createCanvas(15, 15)
     this.createPointsDiv()
     // These will be created by the map class
     this.createCharacter(7,0)
-    // this.createMonster(4,8)
     this.createMonster()
     this.pauseSwitch = false
     this.gameOverSwitch = false
@@ -37,7 +37,7 @@ class Board {
         console.log("Game Over");
       }
       else if(this.itemCount === this.character.itemCount){
-        console.log('You Win!')
+        //console.log('You Win!')
       }
     }
   }
