@@ -34,10 +34,10 @@ class Board {
   gameOver(){
     if (this.monster && this.character){
       if (this.monster.coordinates[0] === this.character.coordinates[0] && this.monster.coordinates[1] === this.character.coordinates[1]){
-        console.log("Game Over");
+        // console.log("Game Over");
       }
       else if(this.itemCount === this.character.itemCount){
-        console.log('You Win!')
+        // console.log('You Win!')
       }
     }
   }
@@ -46,7 +46,7 @@ class Board {
     this.map = new Map(this)
     this.currentMap = this.map.returnMap()
     this.mapNumber += 1
-    console.log(this.currentMap);
+    // console.log(this.currentMap);
   }
 
   createCanvas(width, height){
@@ -101,7 +101,7 @@ class Board {
     let monsterCoordinates = this.map.createMonsters()
     for (var position of monsterCoordinates){
       let monster = new Monster(position[0], position[1], this)
-      console.log(monster);
+      // console.log(monster);
       this.monsters.push(monster);
     }
   }

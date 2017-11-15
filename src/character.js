@@ -37,6 +37,7 @@ class Character{
     let character = document.getElementById('hero')
     character.src = this.img
     let position = this.formatCoordinates(coordinatesArray)
+    console.log(position);
     let tile = document.getElementById(position)
     tile.appendChild(character)
   }

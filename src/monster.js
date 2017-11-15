@@ -3,7 +3,7 @@ let monsterId = 0
 class Monster{
   constructor(x,y, board){
     this.id = ++monsterId
-    console.log(this);
+    // console.log(this);
     this.board = board
     this.x = x
     this.y = y
@@ -47,7 +47,7 @@ class Monster{
   moveMonster(){
     setInterval(() => {
       if(this.board.pauseSwitch){
-        clearInterval(id)
+        clearInterval()
       }
       else{
         let randomNumber = Math.floor(Math.random() * 4)

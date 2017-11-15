@@ -6,14 +6,17 @@ class Map {
     this.board = board
     this.number = this.board.mapNumber
 
-    this.barrierCount = 10
+    this.barrierCount = 200
     this.itemCount = 4
+
+    // 4 is the limit for the monsters right now
     this.monsterCount = 4
 
     this.map = []
 
     this.createMonsters()
     this.createTiles()
+    this.createPath([7, 14])
   }
 
   createMonsters(){
@@ -46,7 +49,6 @@ class Map {
       // let randomIndex = randomArray[randomPick]
       // let point = coordinates[randomIndex]
       let point = positionArray.pop()
-      console.log(point);
       this.monsterCoordinates.push(point)
       count -= 1
     }
@@ -129,6 +131,55 @@ class Map {
 
   dropTile(coordinates, item){
     this.map[coordinates[0]][coordinates[1]] = item
+  }
+
+  right(coordinates){
+    if (coordinates[1] !== 14){
+      coordinates[1] += 1
+    }
+
+    return coordinates
+  }
+
+  left(coordinates){
+    if (coordinates[1] !== 0){
+      coordinates[1] -= 1
+    }
+
+    return coordinates
+  }
+
+  down(coordinates){
+    if (coordinates[0] !== 14){
+      coordinates[0] += 1
+    }
+
+    return coordinates
+  }
+  up(coordinates){
+    if (coordinates[0] !== 0){
+      coordinates[0] -= 1
+    }
+
+    return coordinates
+  }
+
+  createPath(endpoint){
+    let directions =
+    [
+      this.right,
+      this.down,
+      this.up
+    ]
+
+    let currentTile = [7, 0]
+    let path = []
+
+    while (currentTile.toString() !== endpoint.toString()){
+      let random = Math.floor(Math.random() * 3)
+      this.dropTile(currentTile, 0)
+      currentTile = directions[random](currentTile)
+    }
   }
 
   returnMap(){
