@@ -4,6 +4,7 @@ class Monster{
     this.x = x
     this.y = y
     this.coordinates = [this.x,this.y]
+    this.img = 'img/characters/MONSTER/down/monster_01.png'
     this.createMonster(this.coordinates)
     this.moveMonster()
   }
@@ -13,28 +14,26 @@ class Monster{
   }
 
   createMonster(coordinatesArray){
-    let monster = document.createElement('div')
-    monster.style.borderRadius = "50%"
-    monster.style.marginLeft = "30%"
-    monster.style.marginRight = "30%"
-    monster.style.backgroundColor = "purple"
-    monster.innerText = 'M'
+    let monster = document.createElement('img')
+    monster.src = this.img
+    monster.style.width = '100%'
     monster.id = "monster"
     let position = this.formatCoordinates(coordinatesArray)
     let tile = document.getElementById(position)
     tile.appendChild(monster)
   }
 
-  removeMonster(){
-    let monster = document.getElementById('monster')
-    if (monster){
-      monster.remove()
-    }
-  }
+  // removeMonster(){
+  //   let monster = document.getElementById('monster')
+  //   if (monster){
+  //     monster.remove()
+  //   }
+  // }
 
   placeMonster(coordinatesArray){
     this.board.gameOver()
     let monster = document.getElementById('monster')
+    monster.src = this.img
     let position = this.formatCoordinates(coordinatesArray)
     let tile = document.getElementById(position)
     tile.appendChild(monster)
@@ -57,6 +56,7 @@ class Monster{
     let coord = this.formatCoordinates([this.x + 1, this.y])
     let tile = document.getElementById(coord)
     if (tile.dataset.item === "open"){
+      this.img = 'img/characters/MONSTER/down/monster_01.png'
       this.x += 1
       this.coordinates = [this.x, this.y]
       this.placeMonster([this.x, this.y])
@@ -66,6 +66,7 @@ class Monster{
         let coord = this.formatCoordinates([this.x - 1, this.y])
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
+          this.img = 'img/characters/MONSTER/up/monster_01.png'
           this.x -= 1
           this.coordinates = [this.x, this.y]
           this.placeMonster([this.x, this.y])
@@ -75,6 +76,7 @@ class Monster{
         let coord = this.formatCoordinates([this.x, this.y + 1])
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
+          this.img = 'img/characters/MONSTER/right/monster_01.png'
           this.y += 1
           this.coordinates = [this.x, this.y]
           this.placeMonster([this.x, this.y])
@@ -84,6 +86,7 @@ class Monster{
         let coord = this.formatCoordinates([this.x, this.y - 1])
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
+          this.img = 'img/characters/MONSTER/left/monster_01.png'
           this.y -= 1
           this.coordinates = [this.x, this.y]
           this.placeMonster([this.x, this.y])
