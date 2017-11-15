@@ -23,12 +23,6 @@ class Monster{
     tile.appendChild(monster)
   }
 
-  // removeMonster(){
-  //   let monster = document.getElementById('monster')
-  //   if (monster){
-  //     monster.remove()
-  //   }
-  // }
 
   placeMonster(coordinatesArray){
     this.board.gameOver()
@@ -43,7 +37,7 @@ class Monster{
   moveMonster(){
     setInterval(() => {
       if(this.board.pauseSwitch){
-        clearInterval(id)
+        clearInterval()
       }
       else{
         let randomNumber = Math.floor(Math.random() * 4)
