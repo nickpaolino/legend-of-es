@@ -1,9 +1,13 @@
 class Board {
   constructor(){
-    this.itemCount = 0
-    this.generateBoard()
+    this.mapNumber = 0
+    // this.boardArray = []
+    this.generateMap()
+
     this.createCanvas(15, 15)
     this.createPointsDiv()
+
+    // These will be created by the map class
     this.createCharacter(1,1)
     this.createMonster(4,8)
     this.pauseSwitch = false
@@ -36,24 +40,11 @@ class Board {
     }
   }
 
-  generateBoard(){
-    this.board = [
-      [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-      [0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 1],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 1],
-      [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-      [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-      [0, 1, 0, 2, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
-    ]
+  generateMap(){
+    this.map = new Map(this)
+    this.currentMap = this.map.returnMap()
+    this.mapNumber += 1
+    console.log(this.currentMap);
   }
 
   createCanvas(width, height){
@@ -68,7 +59,7 @@ class Board {
       canvas.appendChild(row)
 
       for (var j = 0; j < width; j++){
-        var tileItem = this.board[i][j]
+        var tileItem = this.currentMap[i][j]
 
         var cell = document.createElement('td')
         cell.className = "tile"
@@ -104,8 +95,8 @@ class Board {
     this.character = character
   }
 
-  createMonster(x,y){
-    let monster = new Monster(x,y, this)
+  createMonster(x, y){
+    let monster = new Monster(x, y, this)
     this.monster = monster
   }
 
