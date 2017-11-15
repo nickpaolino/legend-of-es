@@ -24,14 +24,6 @@ class Character{
     tile.appendChild(character)
   }
 
-  // removeCharacter(){
-  //   let character = document.getElementById('hero')
-  //   if (character){
-  //     character.remove()
-  //   }
-  // }
-
-
 
   placeCharacter(coordinatesArray){
     this.board.gameOver()
@@ -51,6 +43,25 @@ class Character{
     this.moveLeft()
   }
 
+  moveConstraints(tile, axis, value){
+    if (tile.dataset.item === "open"){
+      if(axis === 'x'){this.x += value}
+      else{this.y += value}
+      this.coordinates = [this.x, this.y]
+      this.placeCharacter([this.x, this.y])
+    }
+    else if (tile.dataset.item === "item"){
+      let coffeeImg = tile.children[0]
+      coffeeImg.remove()
+      tile.dataset.item = "open"
+      if(axis === 'x'){this.x += value}
+      else{this.y += value}
+      this.coordinates = [this.x, this.y]
+      this.itemCount++
+      this.placeCharacter([this.x, this.y])
+    }
+  }
+
   moveDown(){
     document.addEventListener('keydown', (ev) => {
       if (this.board.pauseSwitch === true){
@@ -60,22 +71,11 @@ class Character{
         let coord = this.formatCoordinates([this.x + 1, this.y])
         let tile = document.getElementById(coord)
         this.img = `img/characters/ES/down/Es_01.png`
-        if (tile.dataset.item === "open"){
-          this.x += 1
-          this.coordinates = [this.x, this.y]
-          this.placeCharacter([this.x, this.y])
+        this.moveConstraints(tile,'x',1)
         }
-        else if (tile.dataset.item === "item"){
-          let coffeeImg = tile.children[0]
-          coffeeImg.remove()
-          this.x += 1
-          this.coordinates = [this.x, this.y]
-          this.itemCount++
-          this.placeCharacter([this.x, this.y])
-        }
-      }
-    })
-  }
+      })
+    }
+
 
   moveUp(){
     document.addEventListener('keydown', (ev) => {
@@ -83,15 +83,10 @@ class Character{
         console.log('paused')
       }
       else if (ev.which === 38){
-        let hero = document.getElementById('hero')
         let coord = this.formatCoordinates([this.x - 1, this.y])
         let tile = document.getElementById(coord)
-        if (tile.dataset.item === "open"){
-          this.img = `img/characters/ES/up/Es_01.png`
-          this.x -= 1
-          this.coordinates = [this.x, this.y]
-          this.placeCharacter([this.x, this.y])
-        }
+        this.img = `img/characters/ES/up/Es_01.png`
+        this.moveConstraints(tile,'x',-1)
       }
     })
   }
@@ -103,12 +98,8 @@ class Character{
       else if (ev.which === 39){
         let coord = this.formatCoordinates([this.x, this.y + 1])
         let tile = document.getElementById(coord)
-        if (tile.dataset.item === "open"){
-          this.y += 1
-          this.img = `img/characters/ES/right/Es_01.png`
-          this.coordinates = [this.x, this.y]
-          this.placeCharacter([this.x, this.y])
-        }
+        this.img = `img/characters/ES/right/Es_01.png`
+        this.moveConstraints(tile,'y',1)
       }
     })
   }
@@ -120,12 +111,8 @@ class Character{
       else if (ev.which === 37){
         let coord = this.formatCoordinates([this.x, this.y - 1])
         let tile = document.getElementById(coord)
-        if (tile.dataset.item === "open"){
-          this.y -= 1
-          this.img = `img/characters/ES/left/Es_01.png`
-          this.coordinates = [this.x, this.y]
-          this.placeCharacter([this.x, this.y])
-        }
+        this.img = `img/characters/ES/left/Es_01.png`
+        this.moveConstraints(tile,'y',-1)
       }
     })
   }
