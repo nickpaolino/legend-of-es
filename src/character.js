@@ -29,30 +29,31 @@ class Character{
     let score = document.getElementById("score")
     score.innerHTML = `Coffees Left: ${this.board.itemCount-this.itemCount}`
   }
-
-  flagAlert(){
-    if(this.board.itemCount === this.itemCount && this.formatCoordinates(this.coordinates) === this.board.exitCoordinates){
-      debugger
-      console.log('this is the flag')
-    }
-     else if (this.board.itemCount === this.itemCount && !(document.getElementById('flag'))){
-      let block = document.getElementById(this.board.exitCoordinates)
-      block.dataset.item = "open"
-      block.id = "flag"
-      const img = document.createElement('img')
-      img.src = `img/elements/flag.png`
-      img.style.width = "100%"
-      block.appendChild(img)
-      debugger
-    }
-    else{
-      console.log('nothing')
-    }
-  }
+  //
+  // flagAlert(){
+  //   let tile = document.getElementById(this.exitCoordinates)
+  //   if(this.board.itemCount === this.itemCount && this.formatCoordinates(this.coordinates) === this.board.exitCoordinates){
+  //     debugger
+  //     console.log('this is the flag')
+  //   }
+  //    else if (this.board.itemCount === this.itemCount && tile.dataset.item === 'open'  ){
+  //     let block = document.getElementById(this.board.exitCoordinates)
+  //     block.dataset.item = "flag"
+  //     // block.id = "flag"
+  //     const img = document.createElement('img')
+  //     img.src = `img/elements/flag.png`
+  //     img.style.width = "100%"
+  //     block.appendChild(img)
+  //     debugger
+  //   }
+  //   else{
+  //     console.log('nothing')
+  //   }
+  // }
 
 
   placeCharacter(coordinatesArray){
-    this.flagAlert()
+    // this.flagAlert()
     this.board.gameOver()
     this.displayScore()
     let character = document.getElementById('hero')
@@ -85,6 +86,17 @@ class Character{
       else{this.y += value}
       this.coordinates = [this.x, this.y]
       this.itemCount++
+
+      if(this.board.itemCount === this.itemCount && !(this.board.flagSwitch)){
+        let flagTile = document.getElementById(this.board.exitCoordinates)
+        flagTile.dataset.item = "flag"
+        let img = document.createElement('img')
+        img.src = `img/elements/flag.png`
+        img.style.width = "100%"
+        this.board.flagSwitch = true
+        flagTile.appendChild(img)
+      }
+
       this.placeCharacter([this.x, this.y])
     }
     else if (tile.dataset.item === "flag"){
