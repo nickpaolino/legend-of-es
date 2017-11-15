@@ -1,5 +1,9 @@
+let monsterId = 0
+
 class Monster{
   constructor(x,y, board){
+    this.id = ++monsterId
+    console.log(this);
     this.board = board
     this.x = x
     this.y = y
@@ -17,7 +21,7 @@ class Monster{
     let monster = document.createElement('img')
     monster.src = this.img
     monster.style.width = '100%'
-    monster.id = "monster"
+    monster.id = `monster-${this.id}`
     let position = this.formatCoordinates(coordinatesArray)
     let tile = document.getElementById(position)
     tile.appendChild(monster)
@@ -32,7 +36,7 @@ class Monster{
 
   placeMonster(coordinatesArray){
     this.board.gameOver()
-    let monster = document.getElementById('monster')
+    let monster = document.getElementById(`monster-${this.id}`)
     monster.src = this.img
     let position = this.formatCoordinates(coordinatesArray)
     let tile = document.getElementById(position)

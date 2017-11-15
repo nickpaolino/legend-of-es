@@ -6,9 +6,9 @@ class Map {
     this.board = board
     this.number = this.board.mapNumber
 
-    this.barrierCount = 50
+    this.barrierCount = 10
     this.itemCount = 4
-    this.monsterCount = 1
+    this.monsterCount = 4
 
     this.map = []
 
