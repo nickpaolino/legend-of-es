@@ -6,6 +6,7 @@ class Character{
     this.coordinates = [this.x, this.y]
     this.img = 'img/characters/ES/down/Es_01.png'
     this.createCharacter(this.coordinates)
+    this.itemCount = 0
     this.moveCharacter() //why does the listener work but not the gameOver?
   }
 
@@ -30,6 +31,8 @@ class Character{
     }
   }
 
+
+
   placeCharacter(coordinatesArray){
     this.board.gameOver()
     let character = document.getElementById('hero')
@@ -39,7 +42,9 @@ class Character{
     tile.appendChild(character)
   }
 
+
   moveCharacter(){
+
     this.moveDown()
     this.moveUp()
     this.moveRight()
@@ -48,13 +53,24 @@ class Character{
 
   moveDown(){
     document.addEventListener('keydown', (ev) => {
-      if (ev.which === 40){
+      if (this.board.pauseSwitch === true){
+        console.log('paused')
+      }
+      else if (ev.which === 40){
         let coord = this.formatCoordinates([this.x + 1, this.y])
         let tile = document.getElementById(coord)
+        this.img = `img/characters/ES/down/Es_01.png`
         if (tile.dataset.item === "open"){
-          this.img = `img/characters/ES/down/Es_01.png`
           this.x += 1
           this.coordinates = [this.x, this.y]
+          this.placeCharacter([this.x, this.y])
+        }
+        else if (tile.dataset.item === "item"){
+          let coffeeImg = tile.children[0]
+          coffeeImg.remove()
+          this.x += 1
+          this.coordinates = [this.x, this.y]
+          this.itemCount++
           this.placeCharacter([this.x, this.y])
         }
       }
@@ -63,7 +79,10 @@ class Character{
 
   moveUp(){
     document.addEventListener('keydown', (ev) => {
-      if (ev.which === 38){
+      if (this.board.pauseSwitch === true){
+        console.log('paused')
+      }
+      else if (ev.which === 38){
         let hero = document.getElementById('hero')
         let coord = this.formatCoordinates([this.x - 1, this.y])
         let tile = document.getElementById(coord)
@@ -78,7 +97,10 @@ class Character{
   }
   moveRight(){
     document.addEventListener('keydown', (ev) => {
-      if (ev.which === 39){
+      if (this.board.pauseSwitch === true){
+        console.log('paused')
+      }
+      else if (ev.which === 39){
         let coord = this.formatCoordinates([this.x, this.y + 1])
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
@@ -92,7 +114,10 @@ class Character{
   }
   moveLeft(){
     document.addEventListener('keydown', (ev) => {
-      if (ev.which === 37){
+      if (this.board.pauseSwitch === true){
+        console.log('paused')
+      }
+      else if (ev.which === 37){
         let coord = this.formatCoordinates([this.x, this.y - 1])
         let tile = document.getElementById(coord)
         if (tile.dataset.item === "open"){
