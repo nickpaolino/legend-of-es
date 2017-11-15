@@ -30,7 +30,6 @@ class Character{
     }
   }
 
-
   placeCharacter(coordinatesArray){
     this.board.gameOver()
     let character = document.getElementById('hero')
