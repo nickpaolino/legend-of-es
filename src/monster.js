@@ -4,8 +4,7 @@ class Monster{
     this.x = x
     this.y = y
     this.coordinates = [this.x,this.y]
-    this.createMonster()
-    this.placeMonster(this.coordinates)
+    this.createMonster(this.coordinates)
     this.moveMonster()
   }
 
@@ -13,7 +12,7 @@ class Monster{
     return `${coordinatesArray[0]}-${coordinatesArray[1]}`
   }
 
-  createMonster(){
+  createMonster(coordinatesArray){
     let monster = document.createElement('div')
     monster.style.borderRadius = "50%"
     monster.style.marginLeft = "30%"
@@ -21,7 +20,9 @@ class Monster{
     monster.style.backgroundColor = "purple"
     monster.innerText = 'M'
     monster.id = "monster"
-    return monster
+    let position = this.formatCoordinates(coordinatesArray)
+    let tile = document.getElementById(position)
+    tile.appendChild(monster)
   }
 
   removeMonster(){
@@ -33,8 +34,7 @@ class Monster{
 
   placeMonster(coordinatesArray){
     this.board.gameOver()
-    this.removeMonster()
-    let monster = this.createMonster()
+    let monster = document.getElementById('monster')
     let position = this.formatCoordinates(coordinatesArray)
     let tile = document.getElementById(position)
     tile.appendChild(monster)

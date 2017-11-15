@@ -1,6 +1,6 @@
 class Board {
   constructor(){
-    this.boardArray = []
+    // this.boardArray = []
     this.generateBoard()
     this.createCanvas(15, 15)
     this.createCharacter(1,1)
