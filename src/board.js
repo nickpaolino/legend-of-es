@@ -18,12 +18,14 @@ class Board {
   }
 
   nextLevel(){
+    console.log(this.monsters)
     this.generateMap()
     this.itemCount = 0
     this.createCanvas(15, 15)
     this.createPointsDiv()
     // new Character(7,0, this)
     this.createCharacter(7,0)
+    console.log("HERE");
     this.createMonster()
     this.pauseSwitch = false
     this.gameOverSwitch = false
@@ -76,11 +78,11 @@ class Board {
           this.pauseSwitch = true
           this.gameOver = true
           canvas.style.filter = "brightness(50%)"
-          let title = document.createElement('img')
-          title.src = `img/elements/GameOver.png`
-          title.style.width = '100%'
-          title.style.zIndex = -1
-          canvas.appendChild(title)
+          // let title = document.createElement('img')
+          // title.src = `img/elements/GameOver.png`
+          // title.style.width = '100%'
+          // title.style.zIndex = -1
+          // canvas.appendChild(title)
           this.setForm()
           // this.enterUser()
         }
@@ -151,11 +153,12 @@ class Board {
 
   createMonster(){
     let monsterCoordinates = this.map.createMonsters()
+    this.monsters = []
     for (var position of monsterCoordinates){
       let monster = new Monster(position[0], position[1], this)
-      this.monsters = []
       this.monsters.push(monster);
     }
+    console.log("HERE")
   }
 
 
