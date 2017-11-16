@@ -22,7 +22,8 @@ class Board {
     this.itemCount = 0
     this.createCanvas(15, 15)
     this.createPointsDiv()
-    new Character(7,0, this)
+    // new Character(7,0, this)
+    this.createCharacter(7,0)
     this.createMonster()
     this.pauseSwitch = false
     this.gameOverSwitch = false
@@ -53,6 +54,17 @@ class Board {
     document.body.appendChild(h3)
   }
 
+  // enterUser(){
+  //   let form = document.createElement('form')
+  //   let input = document.createElement('input')
+  //   input.className = "text"
+  //   let submit = document.createElement('submit')
+  //   form.appendChild(input)
+  //   form.appendChild(submit)
+  //
+  //   document.body.appendChild(form)
+  // }
+
   gameOver(){
     if (this.monsters.length>0 && this.character){
       for(let i = 0; i<this.monsters.length; i++){
@@ -64,6 +76,7 @@ class Board {
           this.pauseSwitch = true
           this.gameOver = true
           canvas.style.filter = "brightness(50%)"
+          // this.enterUser()
         }
       }
 
