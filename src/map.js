@@ -23,6 +23,8 @@ class Map {
     this.createTiles()
     // this.boundary = 14
     this.createPath([7, 14])
+    this.generateItems()
+
     console.log(this);
   }
 
@@ -49,7 +51,6 @@ class Map {
   createTiles(){
     this.generateEmptyBoard()
     this.generateBarriers()
-    this.generateItems()
   }
 
   generateEmptyBoard(){
