@@ -45,14 +45,17 @@ class Board {
     document.body.appendChild(h3)
   }
 
+
+
   gameOver(){
-    if (this.monster && this.character){
-      if (this.monster.coordinates[0] === this.character.coordinates[0] && this.monster.coordinates[1] === this.character.coordinates[1]){
-        // console.log("Game Over");
+    if (this.monsters.length>0 && this.character){
+      for(let i = 0; i<this.monsters.length; i++){
+        if(this.monsters[i].x === this.character.x && this.monsters[i].y === this.character.y){
+          debugger
+          console.log("Game Over")
+        }
       }
-      else if(this.itemCount === this.character.itemCount){
-        // console.log('You Win!')
-      }
+
     }
   }
 
@@ -103,7 +106,6 @@ class Board {
           cell.appendChild(img)
         }
         else {
-          // cell.style.backgroundImage = `url("img/elements/grass.png")`
           cell.dataset.item = "open"
         }
         row.appendChild(cell)

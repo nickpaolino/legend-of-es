@@ -29,27 +29,7 @@ class Character{
     let score = document.getElementById("score")
     score.innerHTML = `Coffees Left: ${this.board.itemCount-this.itemCount}`
   }
-  //
-  // flagAlert(){
-  //   let tile = document.getElementById(this.exitCoordinates)
-  //   if(this.board.itemCount === this.itemCount && this.formatCoordinates(this.coordinates) === this.board.exitCoordinates){
-  //     debugger
-  //     console.log('this is the flag')
-  //   }
-  //    else if (this.board.itemCount === this.itemCount && tile.dataset.item === 'open'  ){
-  //     let block = document.getElementById(this.board.exitCoordinates)
-  //     block.dataset.item = "flag"
-  //     // block.id = "flag"
-  //     const img = document.createElement('img')
-  //     img.src = `img/elements/flag.png`
-  //     img.style.width = "100%"
-  //     block.appendChild(img)
-  //     debugger
-  //   }
-  //   else{
-  //     console.log('nothing')
-  //   }
-  // }
+
 
 
   placeCharacter(coordinatesArray){
