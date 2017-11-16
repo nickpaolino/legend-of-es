@@ -76,6 +76,11 @@ class Board {
           this.pauseSwitch = true
           this.gameOver = true
           canvas.style.filter = "brightness(50%)"
+          let title = document.createElement('img')
+          title.src = `img/elements/GameOver.png`
+          title.style.width = '100%'
+          title.style.zIndex = -1
+          canvas.appendChild(title)
           // this.enterUser()
         }
       }
@@ -100,6 +105,7 @@ class Board {
     canvas.style.backgroundImage = `url("img/elements/grass_2.png")`
     canvas.className = "canvas"
     document.body.appendChild(canvas)
+    canvas.style.zIndex = -1
 
     for (var i = 0; i < height; i++){
       var row = document.createElement('tr')
@@ -148,6 +154,26 @@ class Board {
       let monster = new Monster(position[0], position[1], this)
       this.monsters.push(monster);
     }
+  }
+
+
+  setForm(){
+    let div = document.getElementById('formDiv')
+    let f = document.createElement("form");
+    f.setAttribute('method',"post");
+    f.setAttribute('action',"submit.php");
+
+    let i = document.createElement("input"); //input element, text
+    i.setAttribute('type',"text");
+    i.setAttribute('name',"username");
+
+    let s = document.createElement("input"); //input element, Submit button
+    s.setAttribute('type',"submit");
+    s.setAttribute('value',"Submit");
+
+    f.appendChild(i);
+    f.appendChild(s);
+
   }
 
 }
