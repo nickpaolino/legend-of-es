@@ -81,6 +81,7 @@ class Board {
           title.style.width = '100%'
           title.style.zIndex = -1
           canvas.appendChild(title)
+          this.setForm()
           // this.enterUser()
         }
       }
@@ -160,21 +161,23 @@ class Board {
 
   setForm(){
     let div = document.getElementById('formDiv')
+
     let f = document.createElement("form");
     f.setAttribute('method',"post");
     f.setAttribute('action',"submit.php");
 
-    let i = document.createElement("input"); //input element, text
+    let i = document.createElement("input");
     i.setAttribute('type',"text");
     i.setAttribute('name',"username");
+    f.appendChild(i);
 
-    let s = document.createElement("input"); //input element, Submit button
+    let s = document.createElement("input");
     s.setAttribute('type',"submit");
     s.setAttribute('value',"Submit");
-
-    f.appendChild(i);
     f.appendChild(s);
+    // debugger
 
+    div.appendChild(f)
   }
 
 }
