@@ -1,5 +1,6 @@
 class Board {
   constructor(level){
+    this.getHighScores()
     this.mapNumber = level
     console.log(this.mapNumber);
     this.monsters = []
@@ -15,6 +16,20 @@ class Board {
     this.gameOverSwitch = false
     this.flagSwitch = false
     this.pause()
+  }
+
+  getHighScores(){
+    let place = 1
+    fetch('http://localhost:3000/users').then(res => res.json()).then(json =>{
+      json.sort(function(a,b){return b.score - a.score}).slice(0,10).forEach((user) =>{
+        let scoresDiv = document.getElementById('highScores')
+        let div = document.createElement('div')
+        div.innerText = `${place}- ${user.name}: ${user.score}`
+        place += 1
+        scoresDiv.appendChild(div)
+
+      })
+    })
   }
 
   nextLevel(){
