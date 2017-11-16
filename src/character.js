@@ -7,6 +7,7 @@ class Character{
     this.coordinates = [this.x, this.y]
     this.img = 'img/characters/ES/right/Es_01.png'
 
+
     this.constructor.currentInstance = this
     if (!this.constructor.listenersSet){
       this.constructor.eventListeners()
