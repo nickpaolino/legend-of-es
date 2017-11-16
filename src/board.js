@@ -176,7 +176,7 @@ class Board {
   postAPI(username,points){
     const api = {method: 'POST',
     body: JSON.stringify({name: username, score:points}),
-    headers:{'Content-Type': 'application/json', Accept: 'appliction/json'}}
+    headers:{'Content-Type': 'application/json', Accept: 'application/json'}}
 
     fetch('http://localhost:3000/users',api).then(res => res.json())
   }
