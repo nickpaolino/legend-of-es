@@ -201,7 +201,7 @@ class Board {
 
     div.appendChild(f)
     f.addEventListener('submit',(ev) => {
-      ev.preventDefault()
+      // ev.preventDefault()
       let name = i.value
       let score = this.score
       this.postAPI(name,score)
