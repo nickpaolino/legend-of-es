@@ -54,8 +54,6 @@ class Monster{
     }, 1000)
   }
 
-
-
   moveDown(){
     let coord = this.formatCoordinates([this.x + 1, this.y])
     let tile = document.getElementById(coord)

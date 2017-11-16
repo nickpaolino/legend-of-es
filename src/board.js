@@ -152,6 +152,7 @@ class Board {
     let monsterCoordinates = this.map.createMonsters()
     for (var position of monsterCoordinates){
       let monster = new Monster(position[0], position[1], this)
+      this.monsters = []
       this.monsters.push(monster);
     }
   }
