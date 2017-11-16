@@ -10,7 +10,8 @@ class Map {
 
     this.constructor.count += 1
 
-    this.barrierCount = 10 + this.constructor.count
+    this.barrierCount = 10 + (this.constructor.count * 5)
+    console.log("THIS IS THE BARRIER COUNT", this.barrierCount);
     this.itemCount = 2
 
     // 4 is the limit for the monsters right now
@@ -22,6 +23,7 @@ class Map {
     this.createTiles()
     // this.boundary = 14
     this.createPath([7, 14])
+    console.log(this);
   }
 
   createMonsters(){

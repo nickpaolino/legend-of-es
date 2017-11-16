@@ -35,7 +35,8 @@ class Character{
 
   displayScore(){
     let score = document.getElementById("score")
-    score.innerHTML = `Coffees Left: ${this.board.itemCount-this.itemCount}`
+    score.innerHTML = `Points: ${this.board.score}`
+    // score.innerHTML = `Coffees Left: ${this.board.itemCount-this.itemCount}`
   }
 
   placeCharacter(coordinatesArray){

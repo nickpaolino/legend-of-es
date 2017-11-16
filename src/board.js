@@ -44,13 +44,12 @@ class Board {
       existingH3.remove()
     }
     let h3 = document.createElement('h3')
-    h3.id = 'score'
-    h3.innerText = `Coffees Left: ${this.itemCount}`
+    // h3.id = 'score'
+    h3.id = "score"
+    // h3.innerText += `Points: ${this.score}`
     h3.align = "center"
     document.body.appendChild(h3)
   }
-
-
 
   gameOver(){
     if (this.monsters.length>0 && this.character){
@@ -68,6 +67,7 @@ class Board {
     this.map = new Map(this)
     this.currentMap = this.map.returnMap()
     this.mapNumber += 1
+    this.score = (Map.count - 1) * 100
     // console.log(this.currentMap);
   }
 
