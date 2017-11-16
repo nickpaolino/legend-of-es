@@ -8,8 +8,10 @@ class Map {
     this.board = board
     this.number = this.board.mapNumber
 
-    this.barrierCount = 20
-    this.itemCount = 1
+    this.constructor.count += 1
+
+    this.barrierCount = 10 + this.constructor.count
+    this.itemCount = 2
 
     // 4 is the limit for the monsters right now
     this.monsterCount = 2
@@ -25,20 +27,6 @@ class Map {
   createMonsters(){
     this.monsterCoordinates = []
     let count = this.monsterCount
-    // let coordinates = this.generateCoordinatesList()
-    // let quarter = (this.height * this.width) / 4
-    //
-    // let randomOne = Math.floor(Math.random() * quarter)
-    // let randomTwo = Math.floor((Math.random() * quarter) + quarter)
-    // let randomThree = Math.floor((Math.random() * quarter) + (quarter * 2))
-    // let randomFour = Math.floor((Math.random() * quarter) + (quarter * 3))
-
-    // let randomArray = [
-    //   randomOne,
-    //   randomTwo,
-    //   randomThree,
-    //   randomFour
-    // ]
 
     let positionArray = [
       [4, 3],
@@ -48,9 +36,6 @@ class Map {
     ]
 
     while (count > 0){
-      // let randomPick = Math.floor(Math.random() * 4)
-      // let randomIndex = randomArray[randomPick]
-      // let point = coordinates[randomIndex]
       let point = positionArray.pop()
       this.monsterCoordinates.push(point)
       count -= 1
@@ -95,7 +80,7 @@ class Map {
     // for (var tile of itemTiles){
     //   this.boundary = tile[1]
     //   console.log(tile, this.boundary);
-      // this.createPath(tile);
+    //   this.createPath(tile);
     // }
   }
 
@@ -199,3 +184,5 @@ class Map {
     return this.map
   }
 }
+
+Map.count = 0

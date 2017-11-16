@@ -22,7 +22,12 @@ class Board {
     this.itemCount = 0
     this.createCanvas(15, 15)
     this.createPointsDiv()
-    this.createCharacter(7,0, this)
+    new Character(7,0, this)
+    this.createMonster()
+    this.pauseSwitch = false
+    this.gameOverSwitch = false
+    this.flagSwitch = false
+    this.pause()
   }
 
   pause(){

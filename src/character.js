@@ -6,6 +6,12 @@ class Character{
     this.y = y
     this.coordinates = [this.x, this.y]
     this.img = 'img/characters/ES/right/Es_01.png'
+
+    this.constructor.currentInstance = this
+    if (!this.constructor.listenersSet){
+      this.constructor.eventListeners()
+    }
+
     this.createCharacter(this.coordinates)
     this.itemCount = 0
     this.moveCharacter() //why does the listener work but not the gameOver?
@@ -14,6 +20,7 @@ class Character{
   formatCoordinates(coordinatesArray){
     return `${coordinatesArray[0]}-${coordinatesArray[1]}`
   }
+
   createCharacter(coordinatesArray){
     let character = document.createElement('img')
     character.src = this.img
@@ -29,8 +36,6 @@ class Character{
     let score = document.getElementById("score")
     score.innerHTML = `Coffees Left: ${this.board.itemCount-this.itemCount}`
   }
-
-
 
   placeCharacter(coordinatesArray){
     // this.flagAlert()
@@ -84,59 +89,58 @@ class Character{
     }
   }
 
-  moveDown(){
-    document.addEventListener('keydown', (ev) => {
-      if (this.board.pauseSwitch === true){
-        console.log('down is paused')
-      }
-      else if (ev.which === 40){
-        let coord = this.formatCoordinates([this.x + 1, this.y])
-        let tile = document.getElementById(coord)
-        this.img = `img/characters/ES/down/Es_01.png`
-        this.moveConstraints(tile,'x',1)
-        }
-      })
-    }
-
-
-  moveUp(){
-    document.addEventListener('keydown', (ev) => {
-      if (this.board.pauseSwitch === true){
-        console.log('paused')
+  static eventListeners(instance){
+    let canvas = document.querySelector('.canvas')
+    document.body.addEventListener('keydown', (ev) => {
+      if (ev.which === 40){
+        this.currentInstance.moveDown()
+        console.log(ev.which)
       }
       else if (ev.which === 38){
-        let coord = this.formatCoordinates([this.x - 1, this.y])
-        let tile = document.getElementById(coord)
-        this.img = `img/characters/ES/up/Es_01.png`
-        this.moveConstraints(tile,'x',-1)
-      }
-    })
-  }
-  moveRight(){
-    document.addEventListener('keydown', (ev) => {
-      if (this.board.pauseSwitch === true){
-        console.log('paused')
+        this.currentInstance.moveUp()
+        console.log(ev.which)
       }
       else if (ev.which === 39){
-        let coord = this.formatCoordinates([this.x, this.y + 1])
-        let tile = document.getElementById(coord)
-        this.img = `img/characters/ES/right/Es_01.png`
-        this.moveConstraints(tile,'y',1)
-      }
-    })
-  }
-  moveLeft(){
-    document.addEventListener('keydown', (ev) => {
-      if (this.board.pauseSwitch === true){
-        console.log('paused')
+        this.currentInstance.moveRight()
+        console.log(ev.which)
       }
       else if (ev.which === 37){
-        let coord = this.formatCoordinates([this.x, this.y - 1])
-        let tile = document.getElementById(coord)
-        this.img = `img/characters/ES/left/Es_01.png`
-        this.moveConstraints(tile,'y',-1)
+        this.currentInstance.moveLeft()
+        console.log(ev.which)
       }
+      else {}
+      this.listenersSet = true
     })
+    // canvas.addEventListener('click', (ev) => {
+    //   console.log();
+    // })
+  }
+
+  moveDown(){
+    let coord = this.formatCoordinates([this.x + 1, this.y])
+    let tile = document.getElementById(coord)
+    this.img = `img/characters/ES/down/Es_01.png`
+    this.moveConstraints(tile,'x',1)
+  }
+
+  moveUp(){
+    let coord = this.formatCoordinates([this.x - 1, this.y])
+    let tile = document.getElementById(coord)
+    this.img = `img/characters/ES/up/Es_01.png`
+    this.moveConstraints(tile,'x',-1)
+  }
+
+  moveRight(){
+    let coord = this.formatCoordinates([this.x, this.y + 1])
+    let tile = document.getElementById(coord)
+    this.img = `img/characters/ES/right/Es_01.png`
+    this.moveConstraints(tile,'y',1)
+  }
+  moveLeft(){
+    let coord = this.formatCoordinates([this.x, this.y - 1])
+    let tile = document.getElementById(coord)
+    this.img = `img/characters/ES/left/Es_01.png`
+    this.moveConstraints(tile,'y',-1)
   }
 
 }
