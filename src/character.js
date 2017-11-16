@@ -14,7 +14,6 @@ class Character{
   formatCoordinates(coordinatesArray){
     return `${coordinatesArray[0]}-${coordinatesArray[1]}`
   }
-
   createCharacter(coordinatesArray){
     let character = document.createElement('img')
     character.src = this.img
