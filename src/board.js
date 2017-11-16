@@ -69,9 +69,7 @@ class Board {
     if (this.monsters.length>0 && this.character){
       for(let i = 0; i<this.monsters.length; i++){
         if(this.monsters[i].x === this.character.x && this.monsters[i].y === this.character.y){
-          // document.removeEventListener('keydown', (ev) => {
-          //   return ev.which === 32
-          // }, false)
+
           let canvas = document.querySelector('.canvas')
           this.pauseSwitch = true
           this.gameOver = true
@@ -82,7 +80,6 @@ class Board {
           title.style.zIndex = -1
           canvas.appendChild(title)
           this.setForm()
-          // this.enterUser()
         }
       }
 
@@ -151,20 +148,27 @@ class Board {
 
   createMonster(){
     let monsterCoordinates = this.map.createMonsters()
+    this.monsters = []
     for (var position of monsterCoordinates){
       let monster = new Monster(position[0], position[1], this)
-      this.monsters = []
       this.monsters.push(monster);
     }
   }
 
+  postAPI(username,points){
+    const api = {method: 'POST',
+    body: JSON.stringify({name: username, score:points}),
+    headers:{'Content-Type': 'application/json', Accept: 'appliction/json'}}
+
+    fetch('http://localhost:3000/users',api).then(res => res.json())
+  }
 
   setForm(){
     let div = document.getElementById('formDiv')
 
     let f = document.createElement("form");
     f.setAttribute('method',"post");
-    f.setAttribute('action',"submit.php");
+    f.setAttribute('action',"");
 
     let i = document.createElement("input");
     i.setAttribute('type',"text");
@@ -174,10 +178,16 @@ class Board {
     let s = document.createElement("input");
     s.setAttribute('type',"submit");
     s.setAttribute('value',"Submit");
+
     f.appendChild(s);
-    // debugger
 
     div.appendChild(f)
+    f.addEventListener('submit',(ev) => {
+      ev.preventDefault()
+      let name = i.value
+      let score = this.score
+      this.postAPI(name,score)
+    })
   }
 
 }
