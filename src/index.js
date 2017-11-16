@@ -1,4 +1,3 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const newBoard = new Board()
-  
+  const newBoard = new Board(0)
 })

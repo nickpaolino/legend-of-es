@@ -1,6 +1,7 @@
 class Character{
   constructor(x,y, board){
     this.board = board
+    this.level = this.board.mapNumber
     this.x = x
     this.y = y
     this.coordinates = [this.x, this.y]
@@ -59,7 +60,6 @@ class Character{
     let character = document.getElementById('hero')
     character.src = this.img
     let position = this.formatCoordinates(coordinatesArray)
-    console.log(position);
     let tile = document.getElementById(position)
     tile.appendChild(character)
   }
@@ -101,7 +101,7 @@ class Character{
       this.placeCharacter([this.x, this.y])
     }
     else if (tile.dataset.item === "flag"){
-      console.log('flag')
+      this.board.nextLevel()
     }
   }
 

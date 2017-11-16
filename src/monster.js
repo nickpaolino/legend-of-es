@@ -2,6 +2,7 @@ let monsterId = 0
 
 class Monster{
   constructor(x,y, board){
+    console.log(this);
     this.id = ++monsterId
     // console.log(this);
     this.board = board

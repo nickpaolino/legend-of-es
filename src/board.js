@@ -1,6 +1,7 @@
 class Board {
-  constructor(){
-    this.mapNumber = 0
+  constructor(level){
+    this.mapNumber = level
+    console.log(this.mapNumber);
     this.monsters = []
     this.itemCount = 0
     this.exitCoordinates = '7-14'
@@ -12,8 +13,16 @@ class Board {
     this.createMonster()
     this.pauseSwitch = false
     this.gameOverSwitch = false
-    this.flagSwitch === false
+    this.flagSwitch = false
     this.pause()
+  }
+
+  nextLevel(){
+    this.generateMap()
+    this.itemCount = 0
+    this.createCanvas(15, 15)
+    this.createPointsDiv()
+    this.createCharacter(7,0, this)
   }
 
   pause(){
@@ -25,6 +34,10 @@ class Board {
   }
 
   createPointsDiv(){
+    let existingH3 = document.querySelector('h3')
+    if (existingH3){
+      existingH3.remove()
+    }
     let h3 = document.createElement('h3')
     h3.id = 'score'
     h3.innerText = `Coffees Left: ${this.itemCount}`
@@ -51,6 +64,10 @@ class Board {
   }
 
   createCanvas(width, height){
+    var existingCanvas = document.querySelector('table')
+    if (existingCanvas){
+      existingCanvas.remove()
+    }
     var canvas = document.createElement('table')
     canvas.style.backgroundImage = `url("img/elements/grass_2.png")`
     canvas.className = "canvas"
@@ -102,7 +119,6 @@ class Board {
     let monsterCoordinates = this.map.createMonsters()
     for (var position of monsterCoordinates){
       let monster = new Monster(position[0], position[1], this)
-      // console.log(monster);
       this.monsters.push(monster);
     }
   }
