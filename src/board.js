@@ -33,7 +33,9 @@ class Board {
   pause(){
     document.addEventListener('keydown', (ev) => {
       if(ev.which === 32){
-        this.pauseSwitch = !this.pauseSwitch
+        if (!gameOver){
+          this.pauseSwitch = !this.pauseSwitch
+        }
       }
     })
   }
@@ -55,8 +57,13 @@ class Board {
     if (this.monsters.length>0 && this.character){
       for(let i = 0; i<this.monsters.length; i++){
         if(this.monsters[i].x === this.character.x && this.monsters[i].y === this.character.y){
-          debugger
-          console.log("Game Over")
+          // document.removeEventListener('keydown', (ev) => {
+          //   return ev.which === 32
+          // }, false)
+          let canvas = document.querySelector('.canvas')
+          this.pauseSwitch = true
+          this.gameOver = true
+          canvas.style.filter = "brightness(50%)"
         }
       }
 
