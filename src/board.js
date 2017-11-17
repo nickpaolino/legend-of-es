@@ -62,7 +62,6 @@ class Board {
           else{
             canvas.style.filter = "brightness(100%)"
             this.pauseSwitch = !this.pauseSwitch
-
           }
         }
       }
@@ -186,7 +185,7 @@ class Board {
     body: JSON.stringify({name: username, score:points}),
     headers:{'Content-Type': 'application/json', Accept: 'application/json'}}
 
-    fetch('http://legendofes.herokuapp.com/users',api).then(res =>   res.json()).then( ()=>location.reload(true) )
+    fetch('http://legendofes.herokuapp.com/users',api).then(res => res.json()).then(()=>location.reload(true) )
   }
 
   setForm(){
@@ -215,7 +214,7 @@ class Board {
       let name = i.value
       let score = this.score
       this.postAPI(name,score)
-      i.value = ""
+      // i.value = ""
     })
   }
 
