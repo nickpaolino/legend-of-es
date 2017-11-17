@@ -50,9 +50,19 @@ class Board {
 
   pause(){
     document.addEventListener('keydown', (ev) => {
+
       if(ev.which === 32){
-        if (!gameOver){
-          this.pauseSwitch = !this.pauseSwitch
+        if (!this.gameOverSwitch){
+          let canvas = document.querySelector('.canvas')
+          if(this.pauseSwitch === false){
+            this.pauseSwitch = !this.pauseSwitch
+            canvas.style.filter = "brightness(50%)"
+          }
+          else{
+            canvas.style.filter = "brightness(100%)"
+            this.pauseSwitch = !this.pauseSwitch
+
+          }
         }
       }
     })
@@ -87,6 +97,11 @@ class Board {
       for(let i = 0; i<this.monsters.length; i++){
         if(this.monsters[i].x === this.character.x && this.monsters[i].y === this.character.y){
 
+          // let frame = document.createElement('div')
+          // frame.className = "gameover"
+          // frame.zIndex = 1
+          // frame.backgroundColor = 'red'
+
           let canvas = document.querySelector('.canvas')
           this.pauseSwitch = true
           this.gameOver = true
@@ -94,8 +109,12 @@ class Board {
           // let title = document.createElement('img')
           // title.src = `img/elements/GameOver.png`
           // title.style.width = '100%'
-          // title.style.zIndex = -1
+          // title.style.zIndex = 1
+          // title.style.display = 'block'
+          // title.style.margin = '0 auto'
+          // title.style.position = 'absolute'
           // canvas.appendChild(title)
+          // debugger
           this.setForm()
         }
       }
@@ -119,6 +138,7 @@ class Board {
     var canvas = document.createElement('table')
     canvas.style.backgroundImage = `url("img/elements/grass_2.png")`
     canvas.className = "canvas"
+    canvas.position = "relative"
     document.body.appendChild(canvas)
     canvas.style.zIndex = -1
 
@@ -174,14 +194,16 @@ class Board {
   }
 
   postAPI(username,points){
+    debugger
     const api = {method: 'POST',
     body: JSON.stringify({name: username, score:points}),
     headers:{'Content-Type': 'application/json', Accept: 'application/json'}}
 
-    fetch('http://legendofes.herokuapp.com/users',api).then(res => res.json())
+    fetch('http://legendofes.herokuapp.com/users',api).then(res =>   res.json())
   }
 
   setForm(){
+    // debugger
     let div = document.getElementById('formDiv')
 
     let f = document.createElement("form");

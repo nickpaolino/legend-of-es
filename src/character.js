@@ -59,7 +59,11 @@ class Character{
   }
 
   moveConstraints(tile, axis, value){
-    if (tile.dataset.item === "open"){
+    if(this.board.pauseSwitch === true){
+      
+      console.log('player paused')
+    }
+    else if (tile.dataset.item === "open"){
       if(axis === 'x'){this.x += value}
       else{this.y += value}
       this.coordinates = [this.x, this.y]
