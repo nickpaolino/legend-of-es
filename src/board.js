@@ -182,7 +182,6 @@ class Board {
   }
 
   postAPI(username,points){
-    debugger
     const api = {method: 'POST',
     body: JSON.stringify({name: username, score:points}),
     headers:{'Content-Type': 'application/json', Accept: 'application/json'}}

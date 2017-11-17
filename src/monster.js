@@ -32,10 +32,14 @@ class Monster{
   placeMonster(coordinatesArray){
     this.board.gameOver()
     let monster = document.getElementById(`monster-${this.id}`)
-    monster.src = this.img
+    if (monster){
+      monster.src = this.img
+    }
     let position = this.formatCoordinates(coordinatesArray)
     let tile = document.getElementById(position)
-    tile.appendChild(monster)
+    if (monster){
+      tile.appendChild(monster)
+    }
   }
 
 
@@ -58,7 +62,7 @@ class Monster{
     let coord = this.formatCoordinates([this.x + 1, this.y])
     let tile = document.getElementById(coord)
     if(tile.childElementCount>0 && tile.children[0].id.slice(0,7) === "monster"){
-        
+
         this.moveMonster()
     }
     else if (tile.dataset.item === "open"){
@@ -72,43 +76,49 @@ class Monster{
   moveUp(){
         let coord = this.formatCoordinates([this.x - 1, this.y])
         let tile = document.getElementById(coord)
-        if(tile.childElementCount>0 && tile.children[0].id.slice(0,7) === "monster"){
-            
+        if (tile){
+          if(tile.childElementCount>0 && tile.children[0].id.slice(0,7) === "monster"){
+
             this.moveMonster()
-        }
-        else if (tile.dataset.item === "open"){
-          this.img = 'img/characters/MONSTER/up/monster_01.png'
-          this.x -= 1
-          this.coordinates = [this.x, this.y]
-          this.placeMonster([this.x, this.y])
+          }
+          else if (tile.dataset.item === "open"){
+            this.img = 'img/characters/MONSTER/up/monster_01.png'
+            this.x -= 1
+            this.coordinates = [this.x, this.y]
+            this.placeMonster([this.x, this.y])
+          }
         }
   }
   moveRight(){
         let coord = this.formatCoordinates([this.x, this.y + 1])
         let tile = document.getElementById(coord)
-        if(tile.childElementCount>0 && tile.children[0].id.slice(0,7) === "monster"){
-            
-          this.moveMonster()
-        }
-        else if (tile.dataset.item === "open"){
-          this.img = 'img/characters/MONSTER/right/monster_01.png'
-          this.y += 1
-          this.coordinates = [this.x, this.y]
-          this.placeMonster([this.x, this.y])
+        if (tile){
+          if(tile.childElementCount>0 && tile.children[0].id.slice(0,7) === "monster"){
+
+            this.moveMonster()
+          }
+          else if (tile.dataset.item === "open"){
+            this.img = 'img/characters/MONSTER/right/monster_01.png'
+            this.y += 1
+            this.coordinates = [this.x, this.y]
+            this.placeMonster([this.x, this.y])
+          }
         }
   }
   moveLeft(){
         let coord = this.formatCoordinates([this.x, this.y - 1])
         let tile = document.getElementById(coord)
-        if(tile.childElementCount>0 && tile.children[0].id.slice(0,7) === "monster"){
-            
-            this.moveMonster()
-        }
-        else if (tile.dataset.item === "open"){
-          this.img = 'img/characters/MONSTER/left/monster_01.png'
-          this.y -= 1
-          this.coordinates = [this.x, this.y]
-          this.placeMonster([this.x, this.y])
+        if (tile){
+          if(tile.childElementCount>0 && tile.children[0].id.slice(0,7) === "monster"){
+
+              this.moveMonster()
+          }
+          else if (tile.dataset.item === "open"){
+            this.img = 'img/characters/MONSTER/left/monster_01.png'
+            this.y -= 1
+            this.coordinates = [this.x, this.y]
+            this.placeMonster([this.x, this.y])
+          }
         }
   }
 
