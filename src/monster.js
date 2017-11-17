@@ -36,7 +36,6 @@ class Monster{
     let position = this.formatCoordinates(coordinatesArray)
     let tile = document.getElementById(position)
     tile.appendChild(monster)
-    debugger
   }
 
 
@@ -58,17 +57,24 @@ class Monster{
   moveDown(){
     let coord = this.formatCoordinates([this.x + 1, this.y])
     let tile = document.getElementById(coord)
-    if (tile.dataset.item === "open"){
+    if(tile.children[0].id.slice(0,7) === "monster"){
+      moveMonster()
+    }
+    else if (tile.dataset.item === "open"){
       this.img = 'img/characters/MONSTER/down/monster_01.png'
       this.x += 1
       this.coordinates = [this.x, this.y]
       this.placeMonster([this.x, this.y])
     }
   }
+  // tile.children[0].id.slice(0,7)
   moveUp(){
         let coord = this.formatCoordinates([this.x - 1, this.y])
         let tile = document.getElementById(coord)
-        if (tile.dataset.item === "open"){
+        if(tile.children[0].id.slice(0,7) === "monster"){
+          moveMonster()
+        }
+        else if (tile.dataset.item === "open"){
           this.img = 'img/characters/MONSTER/up/monster_01.png'
           this.x -= 1
           this.coordinates = [this.x, this.y]
@@ -78,7 +84,10 @@ class Monster{
   moveRight(){
         let coord = this.formatCoordinates([this.x, this.y + 1])
         let tile = document.getElementById(coord)
-        if (tile.dataset.item === "open"){
+        if(tile.children[0].id.slice(0,7) === "monster"){
+          moveMonster()
+        }
+        else if (tile.dataset.item === "open"){
           this.img = 'img/characters/MONSTER/right/monster_01.png'
           this.y += 1
           this.coordinates = [this.x, this.y]
@@ -88,7 +97,10 @@ class Monster{
   moveLeft(){
         let coord = this.formatCoordinates([this.x, this.y - 1])
         let tile = document.getElementById(coord)
-        if (tile.dataset.item === "open"){
+        if(tile.children[0].id.slice(0,7) === "monster"){
+          moveMonster()
+        }
+        else if (tile.dataset.item === "open"){
           this.img = 'img/characters/MONSTER/left/monster_01.png'
           this.y -= 1
           this.coordinates = [this.x, this.y]
