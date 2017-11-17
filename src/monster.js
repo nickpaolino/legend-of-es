@@ -64,7 +64,6 @@ class Monster{
     let tile = document.getElementById(coord)
     if(tile){
       if(tile.childElementCount>0 && tile.children[0].id.slice(0,7) === "monster"){
-        console.log("do you like jazz?")
         this.moveUp()
       }
       else if (tile.dataset.item === "open"){
