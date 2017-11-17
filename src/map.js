@@ -19,10 +19,10 @@ class Map {
 
     this.map = []
 
-    this.createMonsters()
     this.createTiles()
     // this.boundary = 14
     this.createPath([7, 14])
+    this.createMonsters()
     this.generateItems()
 
     console.log(this);

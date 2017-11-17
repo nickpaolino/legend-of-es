@@ -7,12 +7,10 @@ class Character{
     this.coordinates = [this.x, this.y]
     this.img = 'img/characters/ES/right/Es_01.png'
 
-
     this.constructor.currentInstance = this
     if (!this.constructor.listenersSet){
       this.constructor.eventListeners()
     }
-
     this.createCharacter(this.coordinates)
     this.itemCount = 0
     this.moveCharacter() //why does the listener work but not the gameOver?
@@ -47,9 +45,11 @@ class Character{
     character.src = this.img
     let position = this.formatCoordinates(coordinatesArray)
     let tile = document.getElementById(position)
-    tile.appendChild(character)
+    if (tile){
+      console.log("EXISTS");
+      tile.appendChild(character)
+    }
   }
-
 
   moveCharacter(){
     this.moveDown()
@@ -59,35 +59,36 @@ class Character{
   }
 
   moveConstraints(tile, axis, value){
-    if (tile.dataset.item === "open"){
-      if(axis === 'x'){this.x += value}
-      else{this.y += value}
-      this.coordinates = [this.x, this.y]
-      this.placeCharacter([this.x, this.y])
-    }
-    else if (tile.dataset.item === "item"){
-      let coffeeImg = tile.children[0]
-      coffeeImg.remove()
-      tile.dataset.item = "open"
-      if(axis === 'x'){this.x += value}
-      else{this.y += value}
-      this.coordinates = [this.x, this.y]
-      this.itemCount++
-
-      if(this.board.itemCount === this.itemCount && !(this.board.flagSwitch)){
-        let flagTile = document.getElementById(this.board.exitCoordinates)
-        flagTile.dataset.item = "flag"
-        let img = document.createElement('img')
-        img.src = `img/elements/flag.png`
-        img.style.width = "100%"
-        this.board.flagSwitch = true
-        flagTile.appendChild(img)
+    if (tile){
+      if (tile.dataset.item === "open"){
+        if(axis === 'x'){this.x += value}
+        else{this.y += value}
+        this.coordinates = [this.x, this.y]
+        this.placeCharacter([this.x, this.y])
       }
+      else if (tile.dataset.item === "item"){
+        let coffeeImg = tile.children[0]
+        coffeeImg.remove()
+        tile.dataset.item = "open"
+        if (axis === 'x'){this.x += value}
+        else {this.y += value}
+        this.coordinates = [this.x, this.y]
+        this.itemCount++
+        if (this.board.itemCount === this.itemCount && !(this.board.flagSwitch)){
+          let flagTile = document.getElementById(this.board.exitCoordinates)
+          flagTile.dataset.item = "flag"
+          let img = document.createElement('img')
+          img.src = `img/elements/flag.png`
+          img.style.width = "100%"
+          this.board.flagSwitch = true
+          flagTile.appendChild(img)
+        }
 
-      this.placeCharacter([this.x, this.y])
-    }
-    else if (tile.dataset.item === "flag"){
-      this.board.nextLevel()
+        this.placeCharacter([this.x, this.y])
+      }
+      else if (tile.dataset.item === "flag"){
+        this.board.nextLevel()
+      }
     }
   }
 
@@ -96,19 +97,15 @@ class Character{
     document.body.addEventListener('keydown', (ev) => {
       if (ev.which === 40){
         this.currentInstance.moveDown()
-        console.log(ev.which)
       }
       else if (ev.which === 38){
         this.currentInstance.moveUp()
-        console.log(ev.which)
       }
       else if (ev.which === 39){
         this.currentInstance.moveRight()
-        console.log(ev.which)
       }
       else if (ev.which === 37){
         this.currentInstance.moveLeft()
-        console.log(ev.which)
       }
       else {}
       this.listenersSet = true
