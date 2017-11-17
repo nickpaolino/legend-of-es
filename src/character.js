@@ -46,7 +46,6 @@ class Character{
     let position = this.formatCoordinates(coordinatesArray)
     let tile = document.getElementById(position)
     if (tile){
-      console.log("EXISTS");
       tile.appendChild(character)
     }
   }

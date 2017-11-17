@@ -193,12 +193,11 @@ class Board {
   }
 
   postAPI(username,points){
-    debugger
     const api = {method: 'POST',
     body: JSON.stringify({name: username, score:points}),
     headers:{'Content-Type': 'application/json', Accept: 'application/json'}}
 
-    fetch('http://legendofes.herokuapp.com/users',api).then(res =>   res.json())
+    fetch('http://legendofes.herokuapp.com/users',api).then(res => res.json())
   }
 
   setForm(){
@@ -222,11 +221,11 @@ class Board {
 
     div.appendChild(f)
     f.addEventListener('submit',(ev) => {
-
-      // ev.preventDefault()
+      ev.preventDefault()
       let name = i.value
       let score = this.score
       this.postAPI(name,score)
+      i.value = ""
     })
   }
 
