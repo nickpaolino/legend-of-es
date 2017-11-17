@@ -36,6 +36,7 @@ class Monster{
     let position = this.formatCoordinates(coordinatesArray)
     let tile = document.getElementById(position)
     tile.appendChild(monster)
+    debugger
   }
 
 

@@ -2,7 +2,7 @@ class Board {
   constructor(level){
     this.getHighScores()
     this.mapNumber = level
-    console.log(this.mapNumber);
+    // console.log(this.mapNumber);
     this.monsters = []
     this.itemCount = 0
     this.exitCoordinates = '7-14'
@@ -20,7 +20,7 @@ class Board {
 
   getHighScores(){
     let place = 1
-    fetch('http://localhost:3000/users').then(res => res.json()).then(json =>{
+    fetch('https://legendofes.herokuapp.com/users').then(res => res.json()).then(json =>{
       json.sort(function(a,b){return b.score - a.score}).slice(0,10).forEach((user) =>{
         let scoresDiv = document.getElementById('highScores')
         let div = document.createElement('div')
@@ -176,9 +176,9 @@ class Board {
   postAPI(username,points){
     const api = {method: 'POST',
     body: JSON.stringify({name: username, score:points}),
-    headers:{'Content-Type': 'application/json', Accept: 'appliction/json'}}
+    headers:{'Content-Type': 'application/json', Accept: 'application/json'}}
 
-    fetch('http://localhost:3000/users',api).then(res => res.json())
+    fetch('https://legendofes.herokuapp.com/users',api).then(res => res.json())
   }
 
   setForm(){
@@ -201,6 +201,7 @@ class Board {
 
     div.appendChild(f)
     f.addEventListener('submit',(ev) => {
+
       // ev.preventDefault()
       let name = i.value
       let score = this.score

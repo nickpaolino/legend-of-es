@@ -15,7 +15,7 @@ class Character{
 
     this.createCharacter(this.coordinates)
     this.itemCount = 0
-    this.moveCharacter() //why does the listener work but not the gameOver?
+    this.moveCharacter()
   }
 
   formatCoordinates(coordinatesArray){
