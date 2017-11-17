@@ -75,23 +75,12 @@ class Board {
       existingH3.remove()
     }
     let h3 = document.createElement('h3')
-    // h3.id = 'score'
     h3.id = "score"
-    // h3.innerText += `Points: ${this.score}`
     h3.align = "center"
     document.body.appendChild(h3)
   }
 
-  // enterUser(){
-  //   let form = document.createElement('form')
-  //   let input = document.createElement('input')
-  //   input.className = "text"
-  //   let submit = document.createElement('submit')
-  //   form.appendChild(input)
-  //   form.appendChild(submit)
-  //
-  //   document.body.appendChild(form)
-  // }
+
 
   gameOver(){
     if (this.monsters.length>0 && this.character){
@@ -198,7 +187,7 @@ class Board {
     body: JSON.stringify({name: username, score:points}),
     headers:{'Content-Type': 'application/json', Accept: 'application/json'}}
 
-    fetch('http://legendofes.herokuapp.com/users',api).then(res =>   res.json())
+    fetch('http://legendofes.herokuapp.com/users',api).then(res =>   res.json()).then( ()=>location.reload(true) )
   }
 
   setForm(){
@@ -223,10 +212,11 @@ class Board {
     div.appendChild(f)
     f.addEventListener('submit',(ev) => {
 
-      // ev.preventDefault()
+      ev.preventDefault()
       let name = i.value
       let score = this.score
       this.postAPI(name,score)
+      i.value = ""
     })
   }
 
