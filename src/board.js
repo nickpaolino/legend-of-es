@@ -1,5 +1,6 @@
 class Board {
   constructor(level){
+    this.kickback = 1
     this.getHighScores()
     this.mapNumber = level
     // console.log(this.mapNumber);
@@ -10,7 +11,9 @@ class Board {
     this.createCanvas(15, 15)
     this.createPointsDiv()
     // These will be created by the map class
+
     this.createCharacter(7,0)
+
     this.createMonster()
     this.pauseSwitch = false
     this.gameOverSwitch = false
@@ -33,14 +36,12 @@ class Board {
   }
 
   nextLevel(){
-    console.log(this.monsters)
     this.generateMap()
     this.itemCount = 0
     this.createCanvas(15, 15)
     this.createPointsDiv()
     // new Character(7,0, this)
     this.createCharacter(7,0)
-    console.log("HERE");
     this.createMonster()
     this.pauseSwitch = false
     this.gameOverSwitch = false
@@ -118,7 +119,6 @@ class Board {
           this.setForm()
         }
       }
-
     }
   }
 
@@ -126,7 +126,7 @@ class Board {
     this.map = new Map(this)
     this.currentMap = this.map.returnMap()
     this.mapNumber += 1
-    this.score = (Map.count - 1) * 100
+    this.score = (Map.count - this.kickback) * 100
     // console.log(this.currentMap);
   }
 
@@ -190,7 +190,6 @@ class Board {
       let monster = new Monster(position[0], position[1], this)
       this.monsters.push(monster);
     }
-    console.log("HERE")
   }
 
   postAPI(username,points){
